@@ -6,6 +6,7 @@ var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var log             = require('./libs/log')(module);
 var routes          = require('./libs/people-routes');
+var config          = require('./libs/config');
 var app = express();
 
 
@@ -30,6 +31,6 @@ app.use(function(err, req, res, next){
     return;
 });
 
-app.listen(1337, function(){
+app.listen(config.get('port'), function(){
     log.info('Express server listening on port 1337');
 });
