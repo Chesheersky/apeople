@@ -1,3 +1,5 @@
+//todo move to controllers
+
 var express         = require('express');
 var log             = require('./log')(module);
 var PeopleModel    = require('./mongoose').PeopleModel;

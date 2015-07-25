@@ -5,7 +5,8 @@ var logger          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var log             = require('./libs/log')(module);
-var routes          = require('./libs/people-routes');
+var people          = require('./libs/people-routes');
+var auth            = require('./libs/auth-routes');
 var config          = require('./libs/config');
 var app = express();
 
@@ -16,7 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride()); // поддержка put и delete
 
-app.use('/api', routes);
+app.use('/api', people);
+app.use('/api', auth);
+
 app.use(express.static(path.join(__dirname, "public"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 
 app.use(function(req, res, next){
