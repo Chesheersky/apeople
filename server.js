@@ -10,11 +10,13 @@ var config          = require('./libs/config');
 var app = express();
 
 
-app.use('/api', routes);
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(logger('dev')); // выводим все запросы со статусами в консоль
-app.use(bodyParser()); // стандартный модуль, для парсинга JSON в запросах
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(methodOverride()); // поддержка put и delete
+
+app.use('/api', routes);
 app.use(express.static(path.join(__dirname, "public"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 
 app.use(function(req, res, next){

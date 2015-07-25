@@ -27,8 +27,8 @@ router.get('/people', function(req, res) {
 
 router.post('/people', function(req, res) {
     var person = new PeopleModel({//todo adjust it to the model
-        name: req.body.title,
-        phone: req.body.author,
+        name: req.body.name,
+        phone: req.body.phone,
         description: req.body.description,
       //  images: req.body.images
     });
@@ -76,9 +76,9 @@ router.put('/people/:id', function (req, res){
         }
 
 //todo adjust to the proper model
-        persosn.name = req.body.title;
-        persosn.phone = req.body.description;
-        persosn.description = req.body.author;
+        persosn.name = req.body.name;
+        persosn.phone = req.body.phone;
+        persosn.description = req.body.description;
 
         return persosn.save(function (err) {
             if (!err) {
