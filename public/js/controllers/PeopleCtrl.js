@@ -1,5 +1,5 @@
-angular.module('PeopleCtrl', []).controller('PeopleController', function($scope) {
-
-    $scope.tagline = 'Nothing beats a pocket protector!';
-
+angular.module('PeopleCtrl', []).controller('PeopleController', function($scope, People) {
+    People.get().then(function(data){
+        $scope.people = data.data;
+    });
 });
