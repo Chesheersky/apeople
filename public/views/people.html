@@ -3,7 +3,7 @@
 
     <nav class= "navbar navbar-default" role= "navigation" >
       <div class= "navbar-header" >
-        <a class="btn btn-lg btn-success" href="#/edit-person/0">
+        <a class="btn btn-lg btn-success" href="people/edit:0">
           <i class="glyphicon glyphicon-plus"></i>&nbsp;Add new Person
         </a>
       </div>
@@ -21,7 +21,7 @@
           <td>{{data.phone}}</td>
           <td>{{data.description}}</td>
           <td>{{data.modified}}</td>
-          <td><a href="#/edit-person/{{data.id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit Person</a></td>
+          <td><a href="people/edit:{{data._id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit Person</a></td>
         </tr>
       </tbody>
     </table>
