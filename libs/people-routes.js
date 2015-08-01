@@ -55,8 +55,7 @@ router.post('/people', function(req, res) {
 });
 
 router.get('/people/:id', function(req, res) {
-  var personId = req.params.id.substr(1);
-    return PeopleModel.findById(personId, function (err, person) {
+    return PeopleModel.findById(req.params.id, function (err, person) {
         if(!person) {
             res.statusCode = 404;
             return res.send({ error: 'Not found' });
