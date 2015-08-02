@@ -1,1 +1,1 @@
-angular.module('peopleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'PeopleCtrl', 'EditPersonCtrl', 'PeopleService']);
+angular.module('peopleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'PeopleCtrl', 'EditPersonCtrl', 'AddPersonCtrl', 'PeopleService']);

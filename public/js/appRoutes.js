@@ -12,7 +12,7 @@ $routeProvider
     })
 
     .when('/people/edit:personId', {
-        title: 'Edit Customers',
+        title: 'Edit Person',
         templateUrl: 'views/edit-person.html',
         controller: 'EditPersonController',
         resolve:{
@@ -26,6 +26,12 @@ $routeProvider
                 return request;
             }
         }
+    })
+
+    .when('/people/add', {
+        title: 'Add Person',
+        templateUrl: 'views/edit-person.html',
+        controller: 'AddPersonController'
     });
 
 $locationProvider.html5Mode(true);
