@@ -1,14 +1,12 @@
-angular.module('EditPersonCtrl', []).controller('EditPersonController', function ($scope, $rootScope, $location, People, personId, person) {
+angular.module('EditPersonCtrl', []).controller('EditPersonController', function ($scope, $rootScope, $location, People, personId, personRequest) {
 
-    $rootScope.title = (personId > 0) ? 'Edit Person' : 'Add Person';
-    $scope.buttonText = (personId > 0) ? 'Update Person' : 'Add New Person';
+    $rootScope.title = (personId != 0) ? 'Edit Person' : 'Add Person';
+    $scope.buttonText = (personId != 0) ? 'Update Person' : 'Add New Person';
 
-    var original = person.data;
+    var original = personRequest.data.person;
     original._id = personId;
     $scope.person = angular.copy(original);
     $scope.person._id = personId;
-
-    console.log(original);
 
     $scope.isClean = function() {
         return angular.equals(original, $scope.person);
@@ -22,7 +20,7 @@ angular.module('EditPersonCtrl', []).controller('EditPersonController', function
 
     $scope.save = function(person) {
         $location.path('/');
-          if (personId <= 0) {
+          if (personId == 0) {
               People.create(person);
           }
           else {

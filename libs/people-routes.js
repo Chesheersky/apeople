@@ -34,7 +34,7 @@ router.post('/people', function(req, res) {
         description: req.body.description,
       //  images: req.body.images
     });
-    //persosn.images = req.body.images;
+    //person.images = req.body.images;
 
     person.save(function (err) {
         if (!err) {
@@ -78,14 +78,14 @@ router.put('/people/:id', function (req, res){
         }
 
 //todo adjust to the proper model
-        persosn.name = req.body.name;
-        persosn.phone = req.body.phone;
-        persosn.description = req.body.description;
+        person.name = req.body.name;
+        person.phone = req.body.phone;
+        person.description = req.body.description;
 
-        return persosn.save(function (err) {
+        return person.save(function (err) {
             if (!err) {
-                log.info("persosn updated");
-                return res.send({ status: 'OK', persosn:persosn });
+                log.info("person updated");
+                return res.send({ status: 'OK', person:person });
             } else {
                 if(err.name == 'ValidationError') {
                     res.statusCode = 400;

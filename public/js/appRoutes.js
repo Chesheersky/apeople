@@ -20,10 +20,10 @@ $routeProvider
                 var personId = $route.current.params.personId.substr(1);//ToDo deal with the colon on the first position
                 return personId;
             },
-            person: function(People, $route){
+            personRequest: function(People, $route){
                 var personId = $route.current.params.personId.substr(1);//ToDo deal with the colon on the first position
-                var person = People.get(personId);
-                return person;
+                var request = People.get(personId);
+                return request;
             }
         }
     });

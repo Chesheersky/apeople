@@ -38,10 +38,10 @@
               <label class= "col-md-2"></label>
               <div class="col-md-4">
                 <a href="/people" class="btn">Cancel</a>
-                <button data-ng-click="savePerson(persosn);"
+                <button data-ng-click="save(person);"
                 ng-disabled="isClean() || myForm.$invalid"
                 class="btn btn-primary">{{buttonText}}</button>
-                <button data-ng-click="deletePerson(person)"
+                <button data-ng-click="delete(person)"
                 data-ng-show="person._id" class="btn btn-warning">Delete</button>
               </div>
             </div>

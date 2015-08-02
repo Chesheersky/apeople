@@ -13,8 +13,8 @@ angular.module('PeopleService', []).factory('People', ['$http', function($http) 
             return $http.post('/api/people', person);
         },
 
-        update : function(person) {
-            return $http.update('/api/people/' + id, person);
+        update : function(personId, person) {
+            return $http.put('/api/people/' + personId, person);
         },
 
         delete : function(id) {
