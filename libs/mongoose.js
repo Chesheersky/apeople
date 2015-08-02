@@ -37,7 +37,7 @@ var Person = new Schema({
     name: { type: String, required: true },
 //    photo: { type: ObjectId, ref: Images, required: false },
     phone: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, required: false },
 //    quests: [Quests],
     modified: { type: Date, default: Date.now }
 });
