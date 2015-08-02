@@ -15,7 +15,7 @@ angular.module('EditPersonCtrl', []).controller('EditPersonController', function
     $scope.delete = function(person) {
         $location.path('/');
         if(confirm("Are you sure to delete person number: "+$scope.person._id)==true)
-            People.delete(person.id);
+            People.delete(person._id);
     };
 
     $scope.save = function(person) {
