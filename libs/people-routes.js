@@ -28,13 +28,12 @@ router.get('/people', function(req, res) {
 });
 
 router.post('/people', function(req, res) {
-    var person = new PeopleModel({//todo adjust it to the model
+    var person = new PeopleModel({
         name: req.body.name,
         phone: req.body.phone,
         description: req.body.description,
-      //  images: req.body.images
+        images: req.body.images
     });
-    //person.images = req.body.images;
 
     person.save(function (err) {
         if (!err) {
@@ -77,10 +76,10 @@ router.put('/people/:id', function (req, res){
             return res.send({ error: 'Not found' });
         }
 
-//todo adjust to the proper model
         person.name = req.body.name;
         person.phone = req.body.phone;
         person.description = req.body.description;
+        person.images = req.body.images;
 
         return person.save(function (err) {
             if (!err) {

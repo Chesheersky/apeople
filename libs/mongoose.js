@@ -27,6 +27,14 @@ var Schema = mongoose.Schema,
 //    },
 //    url: { type: String, required: true }
 //});
+var Images = new Schema({
+    kind: {
+        type: String,
+        enum: ['thumbnail', 'detail'],
+        required: true
+    },
+    url: { type: String, required: true }
+});
 
 //var Quests = new Schema({
 //    image:  { type: ObjectId, ref: Images, required: false },
@@ -35,7 +43,7 @@ var Schema = mongoose.Schema,
 
 var Person = new Schema({
     name: { type: String, required: true },
-//    photo: { type: ObjectId, ref: Images, required: false },
+    images: [Images],
     phone: { type: String, required: true },
     description: { type: String, required: false },
 //    quests: [Quests],
