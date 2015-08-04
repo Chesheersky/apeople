@@ -6,6 +6,7 @@ var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var log             = require('./libs/log')(module);
 var people          = require('./libs/people-routes');
+var quests          = require('./libs/quests-routes');
 var auth            = require('./libs/auth-routes');
 var config          = require('./libs/config');
 var app = express();
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(methodOverride()); // поддержка put и delete
 
 app.use('/api', people);
+app.use('/api', quests);
 app.use('/api', auth);
 
 app.use(express.static(path.join(__dirname, "public"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
