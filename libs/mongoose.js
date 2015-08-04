@@ -24,14 +24,14 @@ var Photo = new Schema({
 });
 
 var Quest = new Schema({
-    image: Photo,
+    image: { type: ObjectId, ref: 'Photo' },
     name: { type: String, required: true },
     description: { type: String, required: false }
 });
 
 var Person = new Schema({
     name: { type: String, required: true },
-    image: Photo,
+    image: { type: ObjectId, ref: 'Photo' },
     phone: { type: String, required: true },
     description: { type: String, required: false },
     quests: [Quest],
