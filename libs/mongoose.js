@@ -19,29 +19,22 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 // People
-//var Images = new Schema({
-//    kind: {
-//        type: String,
-//        enum: ['thumbnail', 'detail'],
-//        required: true
-//    },
-//    url: { type: String, required: true }
-//});
 var Photo = new Schema({
     url: { type: String, required: true }
 });
 
-//var Quests = new Schema({
-//    image:  { type: ObjectId, ref: Images, required: false },
-//    name: { type: String, required: true }
-//});
+var Quest = new Schema({
+    image: Photo,
+    name: { type: String, required: true },
+    description: { type: String, required: false }
+});
 
 var Person = new Schema({
     name: { type: String, required: true },
     image: Photo,
     phone: { type: String, required: true },
     description: { type: String, required: false },
-//    quests: [Quests],
+    quests: [Quest],
     modified: { type: Date, default: Date.now }
 });
 
@@ -51,6 +44,8 @@ var Person = new Schema({
 //});
 
 var PeopleModel = mongoose.model('Person', Person);
+var QuestsModel = mongoose.model('Quest', Quest);
+var PhotosModel = mongoose.model('Photo', Photo);
 
 // User
 var User = new Schema({
@@ -167,6 +162,8 @@ var RefreshTokenModel = mongoose.model('RefreshToken', RefreshToken);
 
 module.exports.mongoose           = mongoose;
 module.exports.PeopleModel        = PeopleModel;
+module.exports.QuestsModel        = QuestsModel;
+module.exports.PhotosModel        = PhotosModel;
 module.exports.UserModel          = UserModel;
 module.exports.ClientModel        = ClientModel;
 module.exports.AccessTokenModel   = AccessTokenModel;
