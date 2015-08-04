@@ -27,12 +27,7 @@ var Schema = mongoose.Schema,
 //    },
 //    url: { type: String, required: true }
 //});
-var Images = new Schema({
-    kind: {
-        type: String,
-        enum: ['thumbnail', 'detail'],
-        required: true
-    },
+var Photo = new Schema({
     url: { type: String, required: true }
 });
 
@@ -43,7 +38,7 @@ var Images = new Schema({
 
 var Person = new Schema({
     name: { type: String, required: true },
-    images: [Images],
+    image: Photo,
     phone: { type: String, required: true },
     description: { type: String, required: false },
 //    quests: [Quests],

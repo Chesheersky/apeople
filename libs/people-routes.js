@@ -32,7 +32,7 @@ router.post('/people', function(req, res) {
         name: req.body.name,
         phone: req.body.phone,
         description: req.body.description,
-        images: req.body.images
+        image: req.body.image
     });
 
     person.save(function (err) {
@@ -79,7 +79,7 @@ router.put('/people/:id', function (req, res){
         person.name = req.body.name;
         person.phone = req.body.phone;
         person.description = req.body.description;
-        person.images = req.body.images;
+        person.image = req.body.image;
 
         return person.save(function (err) {
             if (!err) {
