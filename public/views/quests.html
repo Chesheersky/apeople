@@ -7,19 +7,17 @@
       </a>
     </div>
   </nav>
-  
+
   <div class="col-md-12" data-ng-show="quests.length > 0">
     <table class="table table-striped table-bordered">
       <thead>
         <th>Name&nbsp;</th>
-        <th>Phone&nbsp;</th>
         <th>Description&nbsp;</th>
         <th>Modified&nbsp;</th>
       </thead>
       <tbody>
         <tr ng-repeat="data in quests">
           <td>{{data.name}}</td>
-          <td>{{data.phone}}</td>
           <td>{{data.description}}</td>
           <td>{{data.modified}}</td>
           <td><a href="quests/edit:{{data._id}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit Quest</a></td>
