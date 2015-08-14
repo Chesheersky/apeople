@@ -26,6 +26,7 @@ var Photo = new Schema({
 var Quest = new Schema({
     image: { type: ObjectId, ref: 'Photo' },
     name: { type: String, required: true },
+    modified: { type: Date, default: Date.now },
     description: { type: String, required: false }
 });
 
