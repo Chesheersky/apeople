@@ -32,6 +32,34 @@ $routeProvider
         title: 'Add Person',
         templateUrl: 'views/edit-person.html',
         controller: 'AddPersonController'
+    })
+
+    .when('/quests', {
+        templateUrl: 'views/quests.html',
+        controller: 'QuestsController'
+    })
+
+    .when('/quests/edit:questId', {
+        title: 'Edit Quest',
+        templateUrl: 'views/edit-quest.html',
+        controller: 'EditQuestController',
+        resolve:{
+            questId: function($route){
+                var questId = $route.current.params.questId.substr(1);//ToDo deal with the colon on the first position
+                return questId;
+            },
+            questRequest: function(Quests, $route){
+                var questId = $route.current.params.questId.substr(1);//ToDo deal with the colon on the first position
+                var request = Quests.get(questId);
+                return request;
+            }
+        }
+    })
+
+    .when('/quests/add', {
+        title: 'Add Quest',
+        templateUrl: 'views/edit-quest.html',
+        controller: 'AddQuestController'
     });
 
 $locationProvider.html5Mode(true);
