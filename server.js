@@ -38,6 +38,10 @@ app.use(function(err, req, res, next){
     return;
 });
 
-app.listen(config.get('port'), function(){
+
+var ip = process.env.OPENSHIFT_NODEJS_IP;
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+
+app.listen(port, ip, function(){
     log.info('Express server listening on port 1337');
 });
