@@ -4,6 +4,8 @@
         "tokenLife" : 3600
     },
     "mongoose": {
-        "uri": "mongodb://localhost:27017/test1"
+        "uri": "mongodb://people-ches.rhcloud.com/people",
+        "user": "admin",
+        "password": "YCkpZy3VbSAZ"
     }
 }

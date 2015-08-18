@@ -5,7 +5,13 @@ var crypto      = require('crypto');
 var config      = require('./config');
 var log         = require('./log')(module);
 
-mongoose.connect(config.get('mongoose:uri'));
+var uri = config.get('mongoose:uri');
+var options = {
+  user: config.get('mongoose:user'),
+  pass:  config.get('mongoose:password')
+}
+mongoose.connect(uri, options);
+
 var db = mongoose.connection;
 
 db.on('error', function (err) {
