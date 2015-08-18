@@ -39,12 +39,13 @@ app.use(function(err, req, res, next){
 });
 
 
-var ip = process.env.OPENSHIFT_NODEJS_IP;
-var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-    log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), ip, port);
-    console.log('%s: Trying to start server on %s:%d ...', Date(Date.now()), ip, port);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
-app.listen(port, ip, function(){
-    log.info('%s: Node server started on %s:%d ...', Date(Date.now()), ip, port);
-            console.log('%s: Node server started on %s:%d ...', Date(Date.now()), ip, port);
+    log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+    console.log('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+
+app.listen(app.get('port') ,app.get('ip'), function(){
+    log.info('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+            console.log('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
 });
