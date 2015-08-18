@@ -42,7 +42,9 @@ app.use(function(err, req, res, next){
 var ip = process.env.OPENSHIFT_NODEJS_IP;
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
     log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), ip, port);
+    console.log('%s: Trying to start server on %s:%d ...', Date(Date.now()), ip, port);
 
 app.listen(port, ip, function(){
     log.info('%s: Node server started on %s:%d ...', Date(Date.now()), ip, port);
+            console.log('%s: Node server started on %s:%d ...', Date(Date.now()), ip, port);
 });
