@@ -1,0 +1,53 @@
+<div class="view">
+  <div class="container">
+    <div class="row">
+      <nav class= "navbar navbar-default" role= "navigation" >
+        <div class= "navbar-header" >
+          <a class= "navbar-brand" href= "/people"><i class="glyphicon glyphicon-th-large"></i> People </a>
+          <a data-ng-show="person._id" class= "navbar-brand" href= "people/edit:0"><i class="glyphicon glyphicon-plus"></i> Create Person </a>
+          <a data-ng-show="person._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Currently Editing Person Number: {{person._id}}</a>
+        </div>
+      </nav>
+      <header>
+        <h3>{{title}}</h3>
+      </header>
+      <div class="col-md-12">
+        <form role="form" name="myForm" class="form-horizontal">
+          <div class="row">
+            <div class= "form-group" ng-class="{error: myForm.name.$invalid}">
+              <label class= "col-md-2"> Name </label>
+              <div class="col-md-4">
+                <input name="name" data-ng-model="person.name" type= "text" class= "form-control" placeholder="Name" required/>
+                <span ng-show="myForm.name.$dirty && myForm.name.$invalid" class="help-inline">Name Required</span>
+              </div>
+            </div>
+            <div class= "form-group">
+              <label class= "col-md-2">Phone </label>
+              <div class="col-md-4">
+                <input name="phone" data-ng-model="person.phone" type= "text" class= "form-control" placeholder= "Phone" required/>
+                <span ng-show="myForm.phone.$dirty && myForm.phone.$invalid" class="help-inline">Phone Required</span>
+              </div>
+            </div>
+            <div class= "form-group">
+              <label class= "col-md-2">Description </label>
+              <div class="col-md-4">
+                <input data-ng-model="person.description" type= "text" class= "form-control" placeholder= "Description"/>
+              </div>
+            </div>
+            <div class= "form-group">
+              <label class= "col-md-2"></label>
+              <div class="col-md-4">
+                <a href="/people" class="btn">Cancel</a>
+                <button data-ng-click="save(person);"
+                ng-disabled="isClean() || myForm.$invalid"
+                class="btn btn-primary">{{buttonText}}</button>
+                <button data-ng-click="delete(person)"
+                data-ng-show="person._id" class="btn btn-warning">Delete</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
