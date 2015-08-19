@@ -5,21 +5,31 @@ var crypto      = require('crypto');
 var config      = require('./config');
 var log         = require('./log')(module);
 
-var uri = config.get('mongoose:uri');
-var options = {
-  user: config.get('mongoose:user'),
-  pass:  config.get('mongoose:password')
+var url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;
+
+// if OPENSHIFT env variables are present, use the available connection info:
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+    url = process.env.OPENSHIFT_MONGODB_DB_URL +
+    process.env.OPENSHIFT_APP_NAME;
 }
-mongoose.connect(uri, options);
+
+// Connect to mongodb
+var connect = function () {
+    mongoose.connect(url);
+};
+connect();
 
 var db = mongoose.connection;
 
-db.on('error', function (err) {
-    log.error('connection error:', err.message);
-});
 db.once('open', function callback () {
     log.info("Connected to DB!");
 });
+
+db.on('error', function(error){
+    console.log("Error loading the db - "+ error);
+});
+
+db.on('disconnected', connect);
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
