@@ -11,8 +11,8 @@ var quests          = require('./libs/quests-routes');
 //var config          = require('./libs/config');
 var app = express();
 
- console.log('%s: starting server ...', Date(Date.now()));
-    log.info('%s: starting server ...', Date(Date.now()));
+console.log('%s: starting server ...', Date(Date.now()));
+log.info('%s: starting server ...', Date(Date.now()));
 
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(logger('dev')); // выводим все запросы со статусами в консоль
