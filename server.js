@@ -1,5 +1,3 @@
-
-console.log('before express');
 var express         = require('express');
 console.log('after express');
 var log             = require('./libs/log')(module);
