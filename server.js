@@ -15,7 +15,7 @@ log.info('%s: starting server ...', Date(Date.now()));
 console.log('wat?? O_O')
 
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
-app.use(logger('dev')); // выводим все запросы со статусами в консоль
+//app.use(logger('dev')); // выводим все запросы со статусами в консоль
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride()); // поддержка put и delete

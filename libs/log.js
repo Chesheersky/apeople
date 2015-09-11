@@ -6,13 +6,13 @@ function getLogger(module) {
     return new winston.Logger({
         transports : [
           new winston.transports.File({
-            name: 'info-file',
+            name: path.join(process.env.OPENSHIFT_LOG_DIR, 'info-file'),
             filename: 'filelog-info.log',
             level: 'info',
             label:      path
           }),
           new winston.transports.File({
-            name: 'error-file',
+            name: path.join(process.env.OPENSHIFT_LOG_DIR, 'error-file'),
             filename: 'filelog-error.log',
             level: 'error',
             label:      path
