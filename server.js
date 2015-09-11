@@ -1,10 +1,18 @@
+
+console.log('before express');
 var express         = require('express');
+console.log('after express');
+var log             = require('./libs/log')(module);
+
+
+console.log('%s: before requires', Date(Date.now()));
+log.info('%s: before requires', Date(Date.now()));
+
 var path            = require('path'); // модуль для парсинга пути
 var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var log             = require('./libs/log')(module);
 var people          = require('./libs/people-routes');
 var quests          = require('./libs/quests-routes');
 //var auth            = require('./libs/auth-routes');
