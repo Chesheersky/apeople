@@ -4,10 +4,10 @@ var favicon         = require('serve-favicon');
 var logger          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var log             = require('./libs/log')(module);
+//var log             = require('./libs/log')(module);
 
-console.log('anything');
-log.info('anything');
+//console.log('anything');
+//log.info('anything');
 
 var people          = require('./libs/people-routes');
 var quests          = require('./libs/quests-routes');
@@ -16,7 +16,7 @@ var quests          = require('./libs/quests-routes');
 var app = express();
 
 console.log('%s: starting server ...', Date(Date.now()));
-log.info('%s: starting server ...', Date(Date.now()));
+//log.info('%s: starting server ...', Date(Date.now()));
 
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(logger('dev')); // выводим все запросы со статусами в консоль
@@ -32,14 +32,14 @@ app.use(express.static(path.join(__dirname, "public"))); // запуск ста�
 
 app.use(function(req, res, next){
     res.status(404);
-    log.debug('Not found URL: %s',req.url);
+    //log.debug('Not found URL: %s',req.url);
     res.send({ error: 'Not found' });
     return;
 });
 
 app.use(function(err, req, res, next){
     res.status(err.status || 500);
-    log.error('Internal error(%d): %s',res.statusCode,err.message);
+    //log.error('Internal error(%d): %s',res.statusCode,err.message);
     res.send({ error: err.message });
     return;
 });
@@ -48,10 +48,10 @@ app.use(function(err, req, res, next){
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
-    log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+    //log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
     console.log('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
 
 app.listen(app.get('port') ,app.get('ip'), function(){
-    log.info('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+    //log.info('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
             console.log('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
 });
