@@ -26,7 +26,7 @@
 
   "dependencies": {
     "body-parser": "latest",
-    "express": "~3.4.4",
+    "express": "~4.13.1",
     "faker": "latest",
     "method-override": "latest",
     "mongoose": "latest",
@@ -41,7 +41,7 @@
     "serve-favicon": "latest",
     "winston": "latest"
   },
-  
+
   "devDependencies": {},
   "bundleDependencies": [],
 
