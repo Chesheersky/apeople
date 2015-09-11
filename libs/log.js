@@ -8,12 +8,14 @@ function getLogger(module) {
           new winston.transports.File({
             name: 'info-file',
             filename: 'filelog-info.log',
-            level: 'info'
+            level: 'info',
+            label:      path
           }),
           new winston.transports.File({
             name: 'error-file',
             filename: 'filelog-error.log',
-            level: 'error'
+            level: 'error',
+            label:      path
           })
         ]
     });
