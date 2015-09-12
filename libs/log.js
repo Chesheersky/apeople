@@ -6,19 +6,19 @@ function getLogger(module) {
     return new winston.Logger({
         transports : [
           new winston.transports.File({
-            name:       'logs\info-file',
+            name:       'logs\\info-file',
             filename:   'filelog-info.log',
             level:      'info',
             label:      label
           }),
           new winston.transports.File({
-            name:       'logs\debug-file',
+            name:       'logs\\debug-file',
             filename:   'filelog-debug.log',
             level:      'debug',
             label:      label
           }),
           new winston.transports.File({
-            name:       'logs\error-file',
+            name:       'logs\\error-file',
             filename:   'filelog-error.log',
             level:      'error',
             label:      label
