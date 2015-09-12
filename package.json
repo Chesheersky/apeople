@@ -40,7 +40,8 @@
     "passport-oauth2-client-password": "latest",
     "serve-favicon": "latest",
     "winston": "latest",
-    "path": "latest"
+    "path": "latest",
+    "bower": "latest"
   },
   "devDependencies": {},
   "bundleDependencies": [],
