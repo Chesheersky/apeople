@@ -12,13 +12,9 @@ var quests          = require('./libs/quests-routes');
 var app = express();
 
 console.log('i am here')
-log.info('i am here');
-
-log.info('%s: starting server ...', Date(Date.now()));
-console.log('wat?? O_O')
 
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
-//app.use(logger('dev')); // выводим все запросы со статусами в консоль
+app.use(logger('dev')); // выводим все запросы со статусами в консоль
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride()); // поддержка put и delete
@@ -32,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public"))); // запуск ста�
 app.use(function(req, res, next){
     res.status(404);
     log.debug('Not found URL: %s',req.url);
+    console.log('Not found URL: %s',req.url);
     res.send({ error: 'Not found' });
     return;
 });
@@ -39,6 +36,7 @@ app.use(function(req, res, next){
 app.use(function(err, req, res, next){
     res.status(err.status || 500);
     log.error('Internal error(%d): %s',res.statusCode,err.message);
+    console.log('Internal error(%d): %s',res.statusCode,err.message);
     res.send({ error: err.message });
     return;
 });
@@ -47,7 +45,9 @@ app.use(function(err, req, res, next){
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+console.log('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
 
 app.listen(app.get('port') ,app.get('ip'), function(){
     log.info('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+    console.log('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
 });

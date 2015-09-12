@@ -4,7 +4,7 @@ var express         = require('express');
 var log             = require('./log')(module);
 var PeopleModel    = require('./mongoose').PeopleModel;
 var router = express.Router();
-
+console.log('people routes are here!')
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
