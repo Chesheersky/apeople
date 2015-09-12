@@ -42,7 +42,6 @@
     "winston": "latest",
     "path": "latest"
   },
-
   "devDependencies": {},
   "bundleDependencies": [],
 

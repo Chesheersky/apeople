@@ -11,6 +11,9 @@ var quests          = require('./libs/quests-routes');
 //var config          = require('./libs/config');
 var app = express();
 
+console.log('i am here')
+log.info('i am here');
+
 log.info('%s: starting server ...', Date(Date.now()));
 console.log('wat?? O_O')
 
