@@ -4,7 +4,7 @@ var path    = require('path');
 function getLogger(module) {
     var label = module.filename.split('/').slice(-2).join('/'); //отобразим метку с именем файла, который выводит сообщение
     var logDir = process.env.OPENSHIFT_LOG_DIR;
-
+console.log('logDir is '+logDir);
     return new winston.Logger({
         transports : [
           new winston.transports.File({
