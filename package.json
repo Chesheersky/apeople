@@ -39,14 +39,15 @@
     "passport-http-bearer": "latest",
     "passport-oauth2-client-password": "latest",
     "serve-favicon": "latest",
-    "winston": "latest"
+    "winston": "latest",
+    "path": "latest"
   },
 
   "devDependencies": {},
   "bundleDependencies": [],
 
   "private": true,
-  
+
   "scripts": {
     "start": "node server.js"
   },
