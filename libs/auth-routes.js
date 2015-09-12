@@ -3,11 +3,12 @@
 var express         = require('express');
 var oauth2          = require('./oauth2');
 var passport        = require('passport');
+var log             = require('./log')(module);
 var router = express.Router();
 
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
-  console.log('Time: ', Date.now());
+  log.info('Time: ', Date.now());
   next();
 })
 

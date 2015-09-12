@@ -7,7 +7,7 @@ var router = express.Router();
 
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
-  console.log('Time: ', Date.now());
+  log.info('Time: ', Date.now());
   next();
 })
 
@@ -35,7 +35,7 @@ router.post('/quests', function(req, res) {
             log.info("quest created");
             return res.send({ status: 'OK', quest:quest });
         } else {
-            console.log(err);
+            log.error(err);
             if(err.name == 'ValidationError') {
                 res.statusCode = 400;
                 res.send({ error: 'Validation error' });

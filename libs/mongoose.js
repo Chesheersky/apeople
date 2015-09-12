@@ -26,7 +26,7 @@ db.once('open', function callback () {
 });
 
 db.on('error', function(error){
-    console.log("Error loading the db - "+ error);
+    log.error("Error loading the db - "+ error);
 });
 
 db.on('disconnected', connect);

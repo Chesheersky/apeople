@@ -4,10 +4,10 @@ var express         = require('express');
 var log             = require('./log')(module);
 var PeopleModel    = require('./mongoose').PeopleModel;
 var router = express.Router();
-console.log('people routes are here!')
+
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
-  console.log('Time: ', Date.now());
+  log.info('Time: ', Date.now());
   next();
 })
 // define the home page route
@@ -40,7 +40,7 @@ router.post('/people', function(req, res) {
             log.info("person created");
             return res.send({ status: 'OK', person:person });
         } else {
-            console.log(err);
+            log.error(err);
             if(err.name == 'ValidationError') {
                 res.statusCode = 400;
                 res.send({ error: 'Validation error' });
