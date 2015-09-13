@@ -49,9 +49,8 @@
 
   "scripts": {
     "start": "node server.js",
-    "postinstall": "bower install -p",
-    "prestart": "bower install"
+    "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install"
   },
-  
+
   "main": "server.js"
 }
