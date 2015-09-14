@@ -2,10 +2,5 @@
     "port" : 1337,
     "security": {
         "tokenLife" : 3600
-    },
-    "mongoose": {
-        "uri": "mongodb://people-ches.rhcloud.com/people",
-        "user": "admin",
-        "password": "YCkpZy3VbSAZ"
     }
 }
