@@ -44,8 +44,15 @@ var Person = new Schema({
     image: { type: ObjectId, ref: 'Photo' },
     phone: { type: String, required: true },
     description: { type: String, required: false },
-    quests: [Quest],
+    attempts: [Attempt],
     modified: { type: Date, default: Date.now }
+});
+
+var Attempt = new Schema({
+    quest: { type: ObjectId, ref: 'Quest' },
+    success: { type: Boolean, required: true, default: false },
+    entered: { type: Date, default: Date.now },
+    exited: { type: Date, default: Date.now }
 });
 
 // validation
@@ -56,6 +63,7 @@ var Person = new Schema({
 var PeopleModel = mongoose.model('Person', Person);
 var QuestsModel = mongoose.model('Quest', Quest);
 var PhotosModel = mongoose.model('Photo', Photo);
+var AttemptsModel = mongoose.model('Attempt', Attempt);
 
 // User
 var User = new Schema({
@@ -174,6 +182,7 @@ module.exports.mongoose           = mongoose;
 module.exports.PeopleModel        = PeopleModel;
 module.exports.QuestsModel        = QuestsModel;
 module.exports.PhotosModel        = PhotosModel;
+module.exports.AttemptsModel      = AttemptsModel;
 module.exports.UserModel          = UserModel;
 module.exports.ClientModel        = ClientModel;
 module.exports.AccessTokenModel   = AccessTokenModel;
