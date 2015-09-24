@@ -2,17 +2,13 @@
 
 var express         = require('express');
 var log             = require('./log')(module);
-var PeopleModel    = require('./mongoose').PeopleModel;
-var router = express.Router();
+var PeopleModel     = require('./mongoose').PeopleModel;
+var router          = express.Router();
 
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
   log.info('Time: ', Date.now());
   next();
-})
-// define the home page route
-router.get('/', function(req, res) {
-    res.send('API is running');
 })
 
 router.get('/people', function(req, res) {

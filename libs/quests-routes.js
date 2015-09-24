@@ -2,8 +2,10 @@
 
 var express         = require('express');
 var log             = require('./log')(module);
-var QuestsModel    = require('./mongoose').QuestsModel;
-var router = express.Router();
+var QuestsModel     = require('./mongoose').QuestsModel;
+var PeopleModel     = require('./mongoose').PeopleModel;
+var AttemptsModel   = require('./mongoose').AttemptsModel;
+var router          = express.Router();
 
 // middleware specific to this router
 router.use(function timeLog(req, res, next) {
@@ -109,6 +111,108 @@ router.delete('/quests/:id', function (req, res){
                 return res.send({ error: 'Server error' });
             }
         });
+    });
+});
+
+var getPerson = new function(res, personId, onNotFound, onDefaultError){
+    return PeopleModel.findById(personId, function (err, person) {
+        if(!person)
+            return error(onNotFound(res));
+        if (!err)
+            return success(res.send({ status: 'OK', person:person }));
+        else
+            return error(onDefaultError(res, err));
+    });
+}
+
+var notFound = new function(res){
+    res.statusCode = 404;
+    return res.send({ error: 'Not found' });
+}
+
+var defaultError = new function(res, err){
+    res.statusCode = 500;
+    log.error('Internal error(%d): %s',res.statusCode,err.message);
+    return res.send({ error: 'Server error' });
+}
+
+var success = new function(out){
+  return {
+    success: true,
+    resutlt: out
+  }
+}
+var error = new function(out){
+  return {
+    success: false,
+    resutlt: out
+  }
+}
+
+var createAttempt = new function(req, res, onDefaultError){
+  var attempt = new AttemptsModel({
+      quest = req.body.questId,//todo get quest itself
+      success = false,
+      entered = Date.now(),
+      exited = Date.now()
+  });
+  attempt.save(function (err) {
+      if (!err) {
+          log.info("entered a quest");
+          return success(attempt);
+      } else {
+          return error(onDefaultError(res, err));
+      }
+  });
+}
+
+router.post('/quests:questId/personEnter:personId', function(req, res) {
+    var personResult = getPerson(res, req.params.personId, notFound, defaultError);
+    if(personResult.success == false)
+        return personResult.resutlt;
+    var person = personResult.resutlt;
+
+    return AttemptsModel.findById(req.params.id, function (err, attempt) {
+        if(!attempt) {
+            var createAttemptResult = createAttempt(req, res, defaultError);
+            if(createAttemptResult.success == false)
+              return createAttemptResult.resutlt;
+        }
+        if (!err) {
+          attempt.exited = Date.now();
+          attempt.save(function (err) {
+              if (!err) {
+                  log.info("entered quest");
+                  return res.send({ status: 'OK' });
+              } else
+                  return defaultError(res, err);
+          });
+        } else
+            return defaultError(res, err);
+    });
+});
+
+router.post('/quests:questId/personExit:personId', function(req, res) {
+    var personResult = getPerson(res, req.params.personId, notFound, defaultError);
+    if(personResult.success == false)
+        return personResult.resutlt;
+    var person = personResult.resutlt;
+
+    return AttemptsModel.findById(req.params.id, function (err, attempt) {
+        if(!attempt) {
+            return notFound(res);
+        }
+        if (!err) {
+          attempt.entered = Date.now();
+          attempt.save(function (err) {
+              if (!err) {
+                  log.info("entered quest");
+                  return res.send({ status: 'OK' });
+              } else
+                  return defaultError(res, err);
+          });
+        } else
+            return defaultError(res, err);
     });
 });
 
