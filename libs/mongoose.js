@@ -39,6 +39,13 @@ var Quest = new Schema({
     description: { type: String, required: false }
 });
 
+var Attempt = new Schema({
+    quest: { type: ObjectId, ref: 'Quest' },
+    success: { type: Boolean, required: true, default: false },
+    entered: { type: Date, default: Date.now },
+    exited: { type: Date, default: Date.now }
+});
+
 var Person = new Schema({
     name: { type: String, required: true },
     image: { type: ObjectId, ref: 'Photo' },
@@ -46,13 +53,6 @@ var Person = new Schema({
     description: { type: String, required: false },
     attempts: [Attempt],
     modified: { type: Date, default: Date.now }
-});
-
-var Attempt = new Schema({
-    quest: { type: ObjectId, ref: 'Quest' },
-    success: { type: Boolean, required: true, default: false },
-    entered: { type: Date, default: Date.now },
-    exited: { type: Date, default: Date.now }
 });
 
 // validation

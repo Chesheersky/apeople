@@ -114,7 +114,7 @@ router.delete('/quests/:id', function (req, res){
     });
 });
 
-var getPerson = new function(res, personId, onNotFound, onDefaultError){
+var getPerson = function(res, personId, onNotFound, onDefaultError){
     return PeopleModel.findById(personId, function (err, person) {
         if(!person)
             return error(onNotFound(res));
@@ -125,36 +125,36 @@ var getPerson = new function(res, personId, onNotFound, onDefaultError){
     });
 }
 
-var notFound = new function(res){
+var notFound = function(res){
     res.statusCode = 404;
     return res.send({ error: 'Not found' });
 }
 
-var defaultError = new function(res, err){
+var defaultError = function(res, err){
     res.statusCode = 500;
     log.error('Internal error(%d): %s',res.statusCode,err.message);
     return res.send({ error: 'Server error' });
 }
 
-var success = new function(out){
+var success = function(out){
   return {
     success: true,
     resutlt: out
   }
 }
-var error = new function(out){
+var error = function(out){
   return {
     success: false,
     resutlt: out
   }
 }
 
-var createAttempt = new function(req, res, onDefaultError){
+var createAttempt = function(req, res, onDefaultError){
   var attempt = new AttemptsModel({
-      quest = req.body.questId,//todo get quest itself
-      success = false,
-      entered = Date.now(),
-      exited = Date.now()
+      questId: req.body.questId,//todo get quest itself
+      success: false,
+      entered: Date.now(),
+      exited: Date.now()
   });
   attempt.save(function (err) {
       if (!err) {
@@ -198,6 +198,7 @@ router.post('/quests:questId/personExit:personId', function(req, res) {
         return personResult.resutlt;
     var person = personResult.resutlt;
 
+//todo find attempt by quest and its id
     return AttemptsModel.findById(req.params.id, function (err, attempt) {
         if(!attempt) {
             return notFound(res);
