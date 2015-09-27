@@ -56,7 +56,7 @@ router.post('/attempts', function(req, res) {
               });
           } else {
               res.statusCode = 500;
-              log.error('Internal error(%d): %s',res.statusCode,err.message);
+              log.error(`Internal error(${res.statusCode}): ${err.message}`);
               return res.send({ error: 'Server error' });
           }
       });
@@ -115,7 +115,7 @@ router.put('/attempts/:id', function (req, res){
               });
           } else {
               res.statusCode = 500;
-              log.error('Internal error(%d): %s',res.statusCode,err.message);
+              log.error(`Internal error(${res.statusCode}): ${err.message}`);
               return res.send({ error: 'Server error' });
           }
       });

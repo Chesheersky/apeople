@@ -32,7 +32,7 @@ app.use(function(req, res, next){
 
 app.use(function(err, req, res, next){
     res.status(err.status || 500);
-    log.error('Internal error(%d): %s',res.statusCode,err.message);
+    log.error(`Internal error(${res.statusCode}): ${err.message}`);
     res.send({ error: err.message });
     return;
 });
@@ -40,7 +40,7 @@ app.use(function(err, req, res, next){
 app.set('port', config.get('port'));
 app.set('ip', config.get('ip'));
 
-log.info('%s: Trying to start server on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+log.info(`${Date.now()}: Trying to start server on ${app.get('ip')}:${app.get('port')} ...`);
 app.listen(app.get('port') ,app.get('ip'), function(){
-    log.info('%s: Node server started on %s:%d ...', Date(Date.now()), app.get('ip'), app.get('port'));
+    log.info(`${Date.now()}: Node server started on ${app.get('ip')}:${app.get('port')} ...`);
 });
