@@ -1,5 +1,4 @@
 angular.module('PeopleService', []).factory('People', ['$http', function($http) {
-
     return {
         getAll : function() {
             return $http.get('/api/people');
@@ -21,5 +20,4 @@ angular.module('PeopleService', []).factory('People', ['$http', function($http) 
             return $http.delete('/api/people/' + id);
         }
     }
-
 }]);

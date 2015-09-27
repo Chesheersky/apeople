@@ -1,4 +1,5 @@
 angular.module('peopleApp', ['ngRoute', 'appRoutes', 'MainCtrl',
                              'PeopleCtrl', 'EditPersonCtrl', 'AddPersonCtrl', 'PeopleService',
-                             'QuestsCtrl', 'EditQuestCtrl', 'AddQuestCtrl', 'QuestsService'
+                             'QuestsCtrl', 'EditQuestCtrl', 'AddQuestCtrl', 'QuestsService',
+                             'AttemptsService'
                            ]);
