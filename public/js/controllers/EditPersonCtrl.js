@@ -1,11 +1,8 @@
-angular.module('EditPersonCtrl', []).controller('EditPersonController', function ($scope, $rootScope, $location, People, personId, personRequest) {
+angular.module('EditPersonCtrl', []).controller('EditPersonController', function ($scope, $rootScope, $location, People, Quests, Attempts, personId, personRequest) {
   //todo extract attempts control
   //People.getAll().then(function(data){
   //    $scope.people = data.data;
   //});
-      $scope.attempts = [{id: 1, name: "jil", entered: new Date(), exited: new Date()},
-                         {id: 3, name: "jude", entered: new Date(), exited: new Date()},
-                         {id: 5, name: "jakie", entered: new Date(), exited: new Date()}];
 
       $rootScope.title = 'Edit Person';
       $scope.buttonText = 'Update Person' ;
@@ -41,4 +38,27 @@ angular.module('EditPersonCtrl', []).controller('EditPersonController', function
           $location.path('/');
           People.update(personId, person);
       };
+
+      Quests.getAll().then(function(quests){
+          var result = [];
+          var attempts = $scope.person.attempts;
+
+          quests.data.forEach(function(quest){
+              var attempt = attempts.find((attempt) => {attempt.quest == quest._id});
+              if(attempt)
+              {
+                  quest.success = attempt.success;
+                  quest.entered = attempt.entered;
+                  quest.exited = attempt.exited;
+              }
+              else
+              {
+                  quest.success = false;
+                  quest.entered = null;
+                  quest.exited = null;
+              }
+              result.push(quest);
+          });
+          $scope.attempts = result;
+      });;
 });
