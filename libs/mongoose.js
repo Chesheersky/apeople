@@ -42,8 +42,10 @@ var Quest = new Schema({
 var Attempt = new Schema({
     quest: { type: ObjectId, ref: 'Quest' },
     success: { type: Boolean, required: true, default: false },
-    entered: { type: Date, default: Date.now },
-    exited: { type: Date, default: Date.now }
+    time: { type: String, default: "0" }
+});
+Attempt.virtual('questName').get(function () {
+  return this.quest.name;
 });
 
 var Person = new Schema({
