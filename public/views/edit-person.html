@@ -48,25 +48,21 @@
           </div>
         </form>
       </div>
-      <div class="col-md-12" data-ng-show="attempts.length > 0">
+      <div class="col-md-12" data-ng-show="person.attempts.length > 0">
         <table class="table table-striped table-bordered">
           <thead>
             <th>Name&nbsp;</th>
-            <th>Entered&nbsp;</th>
-            <th>Exited&nbsp;</th>
+            <th>Time&nbsp;</th>
           </thead>
           <tbody>
-            <tr ng-repeat="data in attempts">
-              <td>{{data.name}}</td>
-              <td>{{data.entered}}</td>
-              <td>{{data.exited}}</td>
-              <td><button data-ng-click="enterQuest(person, data.id);" class="btn">&nbsp;<i class="glyphicon glyphicon-log-in"></i>&nbsp; Enter Quest</button></td>
-              <td><button data-ng-click="exitQuest(person, data.id);" class="btn">&nbsp;<i class="glyphicon glyphicon-log-out"></i>&nbsp; Exit Quest</button></td>
+            <tr ng-repeat="data in person.attempts">
+              <td>{{data.quest.name}}</td>
+              <td>{{data.time}}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="col-md-12" data-ng-show="attempts.length == 0">
+      <div class="col-md-12" data-ng-show="person.attempts.length == 0">
         <div class="col-md-12">
           <h4>No quests found</h4>
         </div>

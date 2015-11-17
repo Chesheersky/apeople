@@ -44,9 +44,6 @@ var Attempt = new Schema({
     success: { type: Boolean, required: true, default: false },
     time: { type: String, default: "0" }
 });
-Attempt.virtual('questName').get(function () {
-  return this.quest.name;
-});
 
 var Person = new Schema({
     name: { type: String, required: true },
