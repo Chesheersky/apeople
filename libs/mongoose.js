@@ -42,7 +42,7 @@ var Quest = new Schema({
 var Attempt = new Schema({
     quest: { type: ObjectId, ref: 'Quest' },
     success: { type: Boolean, required: true, default: false },
-    time: { type: String, default: "0" }
+    time: { type: String, default: "00:00" }
 });
 
 var Person = new Schema({
