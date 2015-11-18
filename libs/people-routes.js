@@ -62,9 +62,7 @@ router.get('/people/:id', function (req, res) {
                 if (!err) {
                     var copy = JSON.parse(JSON.stringify(person));
                     quests.forEach(function (quest) {
-                        var attempt = copy.attempts.find(attempt=> {
-                            attempt.quest == quest._id
-                        });
+                        var attempt = copy.attempts.find(attempt=> attempt.quest == quest.id);
                         if (!attempt) {
                             var newAttempt = {
                                 quest: quest,
@@ -73,9 +71,7 @@ router.get('/people/:id', function (req, res) {
                             };
                             copy.attempts.push(newAttempt);
                         }
-                        else {
-                            copy.attempts.push(attempt);
-                        }
+                        attempt.quest = quest;
                     });
                     return res.send({status: 'OK', person: copy});
                 } else {

@@ -66,18 +66,25 @@
                     <th>Time&nbsp;</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="data in person.attempts" inline-edit="data.time" on-save="updateAttempt(data.time)" on-cancel="cancelAttempt(todo.title)">
+
+                    <tr ng-repeat="data in person.attempts">
                         <td>{{data.quest.name}}</td>
                         <td>
-                            <input type="text" on-enter="save()" on-esc="cancel()" ng-model="model1" ng-show="editMode">
-                            <button ng-click="cancel()" ng-show="editMode">Cancel</button>
-                            <button ng-click="save()" ng-show="editMode">Save</button>
-                            <span ng-mouseenter="showEdit = true" ng-mouseleave="showEdit = false">
-                              <span ng-hide="editMode" ng-click="edit()">{{model1}}</span>
-                              <a ng-show="showEdit" ng-click="edit()">Edit</a>
-                            </span>
+                            <edit-in-place value="data.time"></edit-in-place>
                         </td>
                     </tr>
+                    <!--<tr ng-repeat="data in person.attempts" inline-edit="data.time" on-save="updateAttempt(data.time)" on-cancel="cancelAttempt(todo.title)">-->
+                        <!--<td>{{data.quest.name}}</td>-->
+                        <!--<td>-->
+                            <!--<input type="text" on-enter="save()" on-esc="cancel()" ng-model="model1" ng-show="editMode">-->
+                            <!--<button ng-click="cancel()" ng-show="editMode">Cancel</button>-->
+                            <!--<button ng-click="save()" ng-show="editMode">Save</button>-->
+                            <!--<span ng-mouseenter="showEdit = true" ng-mouseleave="showEdit = false">-->
+                              <!--<span ng-hide="editMode" ng-click="edit()">{{model1}}</span>-->
+                              <!--<a ng-show="showEdit" ng-click="edit()">Edit</a>-->
+                            <!--</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
             </div>
