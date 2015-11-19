@@ -17,3 +17,4 @@ npm-debug.log
 public/libs
 
 .openshift
+.idea/workspace.xml
