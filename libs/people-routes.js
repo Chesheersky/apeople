@@ -71,7 +71,8 @@ router.get('/people/:id', function (req, res) {
                             };
                             copy.attempts.push(newAttempt);
                         }
-                        attempt.quest = quest;
+                        else
+                            attempt.quest = quest;
                     });
                     return res.send({status: 'OK', person: copy});
                 } else {
