@@ -36,7 +36,10 @@
     "serve-favicon": "latest",
     "winston": "latest",
     "path": "latest",
-    "bower": "latest"
+    "bower": "latest",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.0.0"
   },
   "devDependencies": {},
   "bundleDependencies": [],
