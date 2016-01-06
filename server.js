@@ -8,7 +8,6 @@ var log             = require('./libs/log')(module);
 var people          = require('./libs/people-routes');
 var quests          = require('./libs/quests-routes');
 var attempts          = require('./libs/attempts-routes');
-//var auth            = require('./libs/auth-routes');
 var config          = require('./libs/config');
 var app = express();
 
@@ -21,7 +20,6 @@ app.use(methodOverride()); // поддержка put и delete
 app.use('/api', people);
 app.use('/api', quests);
 app.use('/api', attempts);
-//app.use('/api', auth);
 
 app.use(express.static(path.join(__dirname, "public"))); // запуск статического файлового сервера, который смотрит на папку public/ (в нашем случае отдает index.html)
 
@@ -29,14 +27,12 @@ app.use(function(req, res, next){
     res.status(404);
     log.error(`Not found URL: ${req.url}`);
     res.send({ error: 'Not found' });
-    return;
 });
 
 app.use(function(err, req, res, next){
     res.status(err.status || 500);
     log.error(`Internal error(${res.statusCode}): ${err.message}`);
     res.send({ error: err.message });
-    return;
 });
 
 app.set('port', config.get('port'));
