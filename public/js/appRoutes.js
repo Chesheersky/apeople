@@ -6,6 +6,20 @@ $routeProvider
         controller: 'MainController'
     })
 
+    .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
+    })
+
+    .when('/logout', {
+        controller: 'LogoutController'
+    })
+
+    .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterController'
+    })
+
     .when('/people', {
         templateUrl: 'views/people.html',
         controller: 'PeopleController'
